@@ -1,13 +1,12 @@
 /*
-PROJECT TITLE: Anti-Office Injury Chair
-CODE NAME: [Frank]enstein (Tentative)
+PROJECT: Hiatus
 DESIGNERS: Aaron Calzado, Kelly Graham
 CLASS: ART 387 Physical Interaction Design Sping 2012
 ADVISOR: Dominic Muren
-
-
+LAST UPDATED: March 4, 2014
 */
 
+/* =============================================== */
 
 //Define the sensors
 const int seat = 12;
@@ -40,45 +39,37 @@ int stopFirstTime = 1;
 unsigned long stopStartTime;
 unsigned long stopPressTime;
 
-//===============================================
+/* =============================================== */
 
 void setup() {
-
-//Set pin modes
-
-pinMode(seat, INPUT);
-pinMode(fwdStop, INPUT);
-pinMode(revStop, INPUT);
-pinMode(fwd, OUTPUT);
-pinMode(rev, OUTPUT);
-Serial.begin(9600);
-
-
+  //Set pin modes
+  pinMode(seat, INPUT);
+  pinMode(fwdStop, INPUT);
+  pinMode(revStop, INPUT);
+  pinMode(fwd, OUTPUT);
+  pinMode(rev, OUTPUT);
+  Serial.begin(9600);
 }
 
+/* =============================================== */
 
-//===============================================
-
-
-void loop(){
-
-seatButton = digitalRead(seat);
-stopButton = digitalRead(fwdStop);
-finishButton = digitalRead(revStop);
-
+void loop() {
+  seatButton = digitalRead(seat);
+  stopButton = digitalRead(fwdStop);
+  finishButton = digitalRead(revStop);
 
 /*
 stopButton and finishButton: LOW == IN and HIGH == OUT
 seatButton: HIGH == IN and LOW == OUT
 */
 
-
 //Start and waiting process
-if (movingForwards){
+if (movingForwards) {
 motorOnFwd();
 } else {
 motorOff();
 }
+
 //seatButton IN, finishButton IN
 if (seatButton == HIGH && finishButton == LOW) {
 if (seatFirstTime == 1) {
@@ -147,22 +138,23 @@ movingForwards = false;
 /* End of important section */
 }
 
-//===============================================
+/* =============================================== */
 
 void motorOff() {
-digitalWrite(fwd, HIGH);
-digitalWrite(rev, HIGH);
+  digitalWrite(fwd, HIGH);
+  digitalWrite(rev, HIGH);
 }
 void motorOnFwd() {
-digitalWrite(fwd, LOW);
-digitalWrite(rev, HIGH);
+  digitalWrite(fwd, LOW);
+  digitalWrite(rev, HIGH);
 }
 void motorOnRev() {
-digitalWrite(fwd, HIGH);
-digitalWrite(rev, LOW);
+  digitalWrite(fwd, HIGH);
+  digitalWrite(rev, LOW);
 }
+
 /*
-Much mahalos: Dae, John, Sara Jo, Tom C.
-Holding code taken from: Jeremy1998 via
+Mahalo: Dae, John, Sara Jo, Tom C.
+Code referenced from: Jeremy1998 via
 http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1280511595/all
 */
